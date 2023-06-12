@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Images Editor</title>
+  <!-- font awesome  -->
+  <link rel="stylesheet" href="./assets/css/vendors/all.min.css">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="./assets/css/vendors/bootstrap.min.css">
+  <!-- main style  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <div class="overlay" ></div>
+  <div class="myModal ">
+    <div class="modal-header">
+      <h3>Hi Broo !!!</h3>
+    </div>
+    <div class="modal-body" >
+      Choose image Only
+    </div>
+  </div>
+  <!-- start editor -->
+  <section class="vh-100">
+    <div class="container-fluid">
+    <!-- start main content  -->
+      <div class="main">
+      <!-- start controls  -->
+      <div class="controls">
+        <!-- start editor tabs btn -->
+        <div class="tab-btns">
+          <ul class="tab-list list-unstyled">
+            <li class="tab-btn" data-target="media" >
+              <i class="fa-solid fa-image"></i>
+              <span>Media</span>
+            </li>
+            <li class="tab-btn" data-target="filters" >
+              <i class="fa-solid fa-sliders"></i>
+              <span>Filters</span>
+            </li>
+            <li class="tab-btn" data-target="crop" >
+              <i class="fa-solid fa-crop"></i>
+              <span>Crop</span>
+            </li>
+            <li class="tab-btn" data-target="flip" >
+              <img src="./assets/images/clockwise-alt-ffffff.svg" class="icon-sm" alt="">
+              <span>Flip</span>
+            </li>
+            <li class="tab-btn" data-target="download">
+              <i class="fa-solid fa-download"></i>
+              <span>Download</span>
+            </li>
+          </ul>
+        </div>
+        <!-- end editor tabs btn -->
+        <!-- start editor tab content -->
+        <div class="tab-body" >
+          <div class="tab-content active" id="media">
+            <h3 class="main-title" > Media <i class="fa-solid fa-image"></i></h3>
+          </div>
+          <div class="tab-content " id="filters">
+            <h3 class="main-title" >Filter<i class="fa-solid fa-sliders"></i></h3>
+            <ul class="p-3 list-unstyled mb-0 list">
+              <li class="group-range" >
+                <label for="saturate">Saturate <small><span></span> %</small></label>
+                <input type="range" class="range" id="saturate" min="0"  max="200" value="100" data-initial="100">
+              </li>
+              <li class="group-range" >
+                <label for="contrast">Contrast <small><span></span> %</small></label>
+                <input type="range" class="range" id="contrast" min="0"  max="200" value="100" data-initial="100">
+              </li>
+              <li class="group-range" >
+                <label for="brightness">Brightness <small><span></span> %</small></label>
+                <input type="range" class="range" id="brightness" min="0"  max="200" value="100" data-initial="100">
+              </li>
+              <li class="group-range" >
+                <label for="sepia">Sepia <small><span></span> %</small></label>
+                <input type="range" class="range" id="sepia" min="0"  max="200" value="0" data-initial="0">
+              </li>
+              <li class="group-range" >
+                <label for="invert">Invert <small><span></span></small></label>
+                <input type="range" class="range" id="invert" min="0" step="0.1" max="1" value="0" data-initial="0">
+              </li>
+              <li class="group-range" >
+                <label for="grayscale">Grayscale <small><span></span></small></label>
+                <input type="range" class="range" id="grayscale" min="0" step="0.1" max="1" value="0" data-initial="0">
+              </li>
+              <li class="group-range" >
+                <label for="blur">Blur <small><span></span> px</small></label>
+                <input type="range" class="range" id="blur" min="0" step="0.1" max="10" value="0" data-initial="0">
+              </li>
+              <li class="group-range" >
+                <label for="hue-rotate">Hue-Rotate <small><span></span> deg</small></label>
+                <input type="range" class="range" id="hue-rotate" min="0" max="360" value="0" data-initial="0">
+              </li>
+            </ul>
+          </div>
+          <div class="tab-content" id="crop">
+            <h3 class="main-title" > Crop <i class="fa-solid fa-crop"></i></h3>
+            <ul class="list-unstyled mb-0 p-3">
+              <li>
+                <h5>Resize</h5>
+                <div class="row">
+                  <div class="col-6 mb-3">
+                    <label for="width" class="mb-2">Width</label>
+                    <input type="number" class="form-control form-control-sm" id="width">
+                  </div>
+                  <div class="col-6 mb-3">
+                    <label for="height" class="mb-2">Height</label>
+                    <input type="number" class="form-control form-control-sm" id="height">
+                  </div>
+                  <div class="col-6 d-flex align-items-center">
+                    <input type="checkbox" id="ratio">
+                    <label for="ratio" class="mb-2"><small>Lock Aspect Ratio</small></label>
+                  </div>
+                  <div class="col-6 d-flex align-items-center">
+                    <input type="checkbox" id="quality">
+                    <label for="quality" class="mb-2"><small>Reduce Quality</small></label>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-content" id="flip">
+            <h3 class="main-title" > Flip <img src="./assets/images/clockwise-alt-ffffff.svg" class="icon-sm" alt=""></h3>
+            <ul class="row list-unstyled mb-0 g-0">
+              <li class="col-6" >
+                <button class="btn one" id="left" ><img src="./assets/images/undo-ffffff.svg" class="img-fluid icon" alt=""></button>
+              </li>
+              <li class="col-6" >
+                <button class="btn one" id="right" ><img src="./assets/images/redo-ffffff.svg" class="img-fluid icon" alt=""></button>
+              </li>
+              <li class="col-6" >
+                <button class="btn one" id="horizontal" ><img src="./assets/images/flip-horizontal-ffffff.svg" class="img-fluid icon" alt=""></button>
+              </li>
+              <li class="col-6" >
+                <button class="btn one" id="vertical" ><img src="./assets/images/flip-vertical-ffffff.svg" class="img-fluid icon" alt=""></button>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-content" id="download">
+            <h3 class="main-title" > Download <i class="fa-solid fa-download"></i></h3>
+            <ul class="p-3 list-unstyled mb-0 list ">
+              <li class="mb-4" >
+                <h6 class="imgType">Choose type your Image</h6>
+                <div class="row">
+                  <div class="col-6">
+                    <input type="radio" class="form-check" value="image/png" name="typeImage" id="png" checked>
+                    <label for="png" >image/png</label>
+                  </div>
+                  <div class="col-6">
+                    <input type="radio" class="form-check" value="image/jpeg" name="typeImage" id="jpg">
+                    <label for="jpg">image/jpeg</label>
+                  </div>
+                </div>
+              </li>
+              <a download class="btn" id="downloading">Download</a>
+            </ul>
+          </div>
+        </div>
+        <!-- start editor tab content -->
+      </div>
+      <!-- start controls  -->
+      <!-- start img showing  -->
+      <div class="upload-img" >
+        <div class="edited-img">
+          <div class="another-control">
+            <div class="row">
+              <div class="col-6">
+                <label for="upload-img"><i class="fa-regular fa-image me-3"></i>Upload</label>
+                <input type="file" id="upload-img">
+              </div>
+              <div class="col-6 text-end">
+                <button class="btn" id="reset"> Reset </button>
+              </div>
+            </div>
+          </div>
+          <div class="img position-relative">
+            <img  class="img-fluid" id="target-img">
+          </div>
+          <div class="upload">
+            <label for="upload-img"><i class="fa-regular fa-image me-3"></i>Upload</label>
+            <input type="file" id="upload-img">
+          </div>
+        </div>
+      </div>
+      <!-- end img showing  -->
+      </div>
+    <!-- end main content  -->
+    
+    </div>
+  </section>
+  <!-- font awesome  -->
+  <script src="./assets/js/vendors/all.min.js"></script>
+  <!-- end editor -->
+  <script src="./assets/js/main.js" type="module" ></script>
+</body>
+</html>
